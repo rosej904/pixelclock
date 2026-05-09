@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pixelclock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pixelclock
+  template:
+    metadata:
+      labels:
+        app: pixelclock
+    spec:
+      containers:
+        - name: pixelclock
+          # Image tag is overridden per overlay — this is just a placeholder.
+          image: yourdockerhubuser/pixelclock:latest
+          env:
+            - name: MQTT_BROKER_URL
+              valueFrom:
+                secretKeyRef:
+                  name: pixelclock-secret
+                  key: mqtt-broker-url
+            - name: AWTRIX_PREFIX
+              valueFrom:
+                configMapKeyRef:
+                  name: pixelclock-config
+                  key: awtrix-prefix
+            - name: TICK_SECONDS
+              valueFrom:
+                configMapKeyRef:
+                  name: pixelclock-config
+                  key: tick-seconds
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 50m
+              memory: 32Mi
+          # The app has no HTTP endpoints so no readiness/liveness probe needed.
+          # If you add a health endpoint later, add probes here.

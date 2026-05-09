@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pixelclock-config
+data:
+  # Dev can talk to a separate mosquitto instance (dev-mosquitto service)
+  # or the same one with a different prefix so messages don't hit the real device.
+  awtrix-prefix: "awtrix-dev"
+  tick-seconds: "1"

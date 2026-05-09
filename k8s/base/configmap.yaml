@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pixelclock-config
+data:
+  # Non-sensitive config lives here in plain text.
+  # Sensitive values (broker URL with credentials) live in the Secret.
+  awtrix-prefix: "awtrix"
+  tick-seconds: "1"

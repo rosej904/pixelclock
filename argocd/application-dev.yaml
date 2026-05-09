@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ulanzi-clock-dev
+  # ArgoCD Applications themselves live in the argocd namespace.
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    # Point this at your actual Git repo URL.
+    repoURL: https://github.com/youruser/ulanzi-clock.git
+    targetRevision: HEAD   # Tracks the default branch (main/master).
+    path: k8s/overlays/dev
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pixelclock-dev
+
+  syncPolicy:
+    # Automatically sync when ArgoCD detects a Git diff.
+    automated:
+      prune: true      # Remove resources that were deleted from Git.
+      selfHeal: true   # Re-sync if someone manually changes the cluster state.
+    syncOptions:
+      - CreateNamespace=true   # Creates pixelclock-dev if it doesn't exist.
