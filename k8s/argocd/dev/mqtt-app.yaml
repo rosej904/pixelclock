@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: mqtt-dev
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1" # Sync before PixelClock app
 spec:
   project: default
   source:
