@@ -113,6 +113,15 @@ ulanzi-clock/
 │   ├── docker-compose.yml   # Mosquitto broker
 │   └── mosquitto.conf       # Broker config
 ├── k8s/                     # K8s Resource Manifests & Kustomize
+│   ├── argocd/
+│   │   ├── dev/
+│   │   │   ├── app-apps.yaml
+│   │   │   ├── mqtt-app.yaml
+│   │   │   └── pixelclock.yaml
+│   │   └── prod/
+│   │       ├── app-apps.yaml
+│   │       ├── mqtt-app.yaml
+│   │       └── pixelclock.yaml
 │   ├── mqtt/
 │   │   └── base/
 │   │       ├── configmap.yaml
