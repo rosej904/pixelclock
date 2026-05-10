@@ -32,7 +32,7 @@ func Load() Config {
 		BrokerURL:    getEnv("MQTT_BROKER_URL", "tcp://localhost:1883"),
 		DevicePrefix: getEnv("AWTRIX_PREFIX", "awtrix"),
 		TickSeconds:  getEnvInt("TICK_SECONDS", 1),
-		ClientID:     getEnv("MQTT_CLIENT_ID", "ulanzi-clock-publisher"),
+		ClientID:     getEnv("MQTT_CLIENT_ID", "pixelclock-publisher"),
 		Username:     getEnv("MQTT_USERNAME", ""),
 		Password:     getEnv("MQTT_PASSWORD", ""),
 	}

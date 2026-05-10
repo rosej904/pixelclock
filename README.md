@@ -59,7 +59,7 @@ MQTT_BROKER_URL=tcp://192.168.1.50:1883 make run
 | `MQTT_BROKER_URL` | `tcp://localhost:1883` | MQTT broker address |
 | `AWTRIX_PREFIX` | `awtrix` | Device topic prefix (match AWTRIX setting) |
 | `TICK_SECONDS` | `1` | How often to push the clock (seconds) |
-| `MQTT_CLIENT_ID` | `ulanzi-clock-publisher` | MQTT client identifier |
+| `MQTT_CLIENT_ID` | `pixelclock-publisher` | MQTT client identifier |
 | `MQTT_USERNAME` | `` | Optional broker auth |
 | `MQTT_PASSWORD` | `` | Optional broker auth |
 

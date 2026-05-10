@@ -7,14 +7,14 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/youruser/ulanzi-clock/config"
-	"github.com/youruser/ulanzi-clock/internal/publisher"
+	"github.com/rosej904/pixelclock/config"
+	"github.com/rosej904/pixelclock/internal/publisher"
 )
 
 func main() {
 	cfg := config.Load()
 
-	log.Printf("🕐 Ulanzi Clock Publisher starting")
+	log.Printf("🕐 PixelClock Publisher starting")
 	log.Printf("   Broker   : %s", cfg.BrokerURL)
 	log.Printf("   Prefix   : %s", cfg.DevicePrefix)
 	log.Printf("   Tick     : %ds", cfg.TickSeconds)
@@ -36,7 +36,7 @@ func main() {
 		TwelveHour:  false,
 		ShowSeconds: true,
 		Color:       []int{0, 200, 255}, // cyan digits
-		Background:  []int{0, 0, 0},    // black background
+		Background:  []int{0, 0, 0},     // black background
 		Rainbow:     false,
 	}
 

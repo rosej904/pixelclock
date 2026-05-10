@@ -1,6 +1,6 @@
-BINARY       := ulanzi-clock
+BINARY       := pixelclock
 CMD          := ./cmd/clock
-IMAGE        := yourdockerhubuser/ulanzi-clock
+IMAGE        := zot.lan:5000/pixelclock
 
 .PHONY: all build run broker broker-down tidy \
         docker-build-dev docker-push-dev \

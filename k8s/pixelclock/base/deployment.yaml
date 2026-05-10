@@ -15,7 +15,7 @@ spec:
       containers:
         - name: pixelclock
           # Image tag is overridden per overlay — this is just a placeholder.
-          image: yourdockerhubuser/pixelclock:latest
+          image: zot.lan:5000/pixelclock:latest
           env:
             - name: MQTT_BROKER_URL
               valueFrom:

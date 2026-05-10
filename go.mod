@@ -1,4 +1,4 @@
-module github.com/youruser/ulanzi-clock
+module github.com/rosej904/pixelclock
 
 go 1.22
 

@@ -5,16 +5,12 @@ kind: Kustomization
 resources:
   - ../../base
 
-# Adds a -dev suffix to every resource name (deployment, configmap, secret)
-# so dev and prod can coexist in the same namespace without colliding.
-nameSuffix: -dev
-
 # All resources in this overlay get this namespace.
 namespace: pixelclock-dev
 
 # Pin to the :dev image tag. You'll push this tag during development.
 images:
-  - name: yourdockerhubuser/pixelclock
+  - name: zot.lan:5000/pixelclock
     newTag: dev
 
 # Overlay-specific patches — overrides just the fields that differ from base.

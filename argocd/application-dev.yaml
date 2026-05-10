@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ulanzi-clock-dev
+  name: pixelclock-dev
   # ArgoCD Applications themselves live in the argocd namespace.
   namespace: argocd
 spec:
@@ -9,7 +9,7 @@ spec:
 
   source:
     # Point this at your actual Git repo URL.
-    repoURL: https://github.com/youruser/ulanzi-clock.git
+    repoURL: https://github.com/rosej904/pixelclock.git
     targetRevision: HEAD   # Tracks the default branch (main/master).
     path: k8s/overlays/dev
 

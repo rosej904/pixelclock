@@ -12,7 +12,7 @@ RUN go mod download
 
 # Now copy the rest of the source and build the binary.
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux go build -o ulanzi-clock ./cmd/clock
+RUN CGO_ENABLED=0 GOOS=linux go build -o pixelclock ./cmd/clock
 
 # ── Stage 2: Runtime ──────────────────────────────────────────────────────────
 # Scratch is a completely empty image — no shell, no OS, just our binary.
@@ -20,6 +20,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o ulanzi-clock ./cmd/clock
 FROM scratch
 
 # Copy only the compiled binary from the builder stage.
-COPY --from=builder /app/ulanzi-clock /ulanzi-clock
+COPY --from=builder /app/pixelclock /pixelclock
 
-ENTRYPOINT ["/ulanzi-clock"]
+ENTRYPOINT ["/pixelclock"]
