@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mqtt-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:rosej904/pixelclock.git
+    targetRevision: HEAD
+    path: k8s/mqtt/overlays/dev # ArgoCD automatically detects Kustomize here
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: pixelclock-dev
