@@ -13,7 +13,9 @@ A Go-based MQTT publisher for the [AWTRIX 3](https://blueforcer.github.io/awtrix
 
 ---
 
-## Phase 1 — Clock
+## PixelClock
+
+### ----Requirements for Ulanzi CLock----
 
 ### 1. Flash AWTRIX onto the TC001
 
@@ -34,7 +36,22 @@ In the AWTRIX web UI (`http://<device-ip>`):
   - Topic prefix: `awtrix` (default, or change and update `AWTRIX_PREFIX` env var)
   - Leave auth blank if using the default Mosquitto config.
 
-### 3. Start the MQTT Broker
+#### Environment Variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `MQTT_BROKER_URL` | `tcp://localhost:1883` | MQTT broker address |
+| `AWTRIX_PREFIX` | `awtrix` | Device topic prefix (match AWTRIX setting) |
+| `TICK_SECONDS` | `1` | How often to push the clock (seconds) |
+| `MQTT_CLIENT_ID` | `pixelclock-publisher` | MQTT client identifier |
+| `MQTT_USERNAME` | `` | Optional broker auth |
+| `MQTT_PASSWORD` | `` | Optional broker auth |
+
+
+
+### ----For Local Testing----
+
+### 3. Start the MQTT Broker vi Makefile
 
 ```bash
 make broker
@@ -51,17 +68,6 @@ make run
 # Custom broker (e.g. broker on another machine)
 MQTT_BROKER_URL=tcp://192.168.1.50:1883 make run
 ```
-
-#### Environment Variables
-
-| Variable | Default | Description |
-|---|---|---|
-| `MQTT_BROKER_URL` | `tcp://localhost:1883` | MQTT broker address |
-| `AWTRIX_PREFIX` | `awtrix` | Device topic prefix (match AWTRIX setting) |
-| `TICK_SECONDS` | `1` | How often to push the clock (seconds) |
-| `MQTT_CLIENT_ID` | `pixelclock-publisher` | MQTT client identifier |
-| `MQTT_USERNAME` | `` | Optional broker auth |
-| `MQTT_PASSWORD` | `` | Optional broker auth |
 
 ### 5. Verify
 
@@ -106,6 +112,36 @@ ulanzi-clock/
 ├── docker/
 │   ├── docker-compose.yml   # Mosquitto broker
 │   └── mosquitto.conf       # Broker config
+├── k8s/                     # K8s Resource Manifests & Kustomize
+│   ├── mqtt/
+│   │   └── base/
+│   │       ├── configmap.yaml
+│   │       ├── deployment.yaml
+│   │       ├── kustomization.yaml
+│   │       ├── pvc.yaml
+│   │       ├── service.yaml
+│   │       └── overlays/
+│   │           ├── dev/
+│   │           │    ├── kustomization.yaml
+│   │           │    └── patch-service.yaml
+│   │           └── prod/
+│   │               ├── kustomization.yaml
+│   │               └── patch-service.yaml
+│   └── pixelclock/
+│       └── base/
+│           ├── configmap.yaml
+│           ├── deployment.yaml
+│           ├── kustomization.yaml
+│           ├── secret.yaml
+│           └── overlays/
+│               └──dev/
+│               │   ├── kustomization.yaml
+│               │   ├── patch-config.yaml
+│               │   └── patch-secret.yaml
+│               └── prod/
+│                   ├── kustomization.yaml
+│                   ├── patch-config.yaml
+│                   └── patch-secret.yaml
 ├── Makefile
 └── go.mod
 ```
