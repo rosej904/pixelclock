@@ -3,5 +3,5 @@ kind: Service
 metadata:
   name: mosquitto-service
   annotations:
-    io.cilium/lb-ipam-ips: "192.168.1.246"
+    io.cilium/lb-ipam-ips: "192.168.1.226"
 spec: {}
