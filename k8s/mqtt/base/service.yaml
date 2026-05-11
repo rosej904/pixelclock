@@ -3,13 +3,17 @@ kind: Service
 metadata:
   name: mosquitto-service
 spec:
-  type: LoadBalancer
-  externalTrafficPolicy: Local
-  loadBalancerClass: io.cilium/lbi-pam
+  allocateLoadBalancerNodePorts: true
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
-    - name: mqtt
-      port: 1883
-      targetPort: 1883
-      protocol: TCP
+  - name: mqtt
+    port: 1883
+    protocol: TCP
+    targetPort: 1883
   selector:
     app: mosquitto
+  sessionAffinity: None
+  type: LoadBalancer
