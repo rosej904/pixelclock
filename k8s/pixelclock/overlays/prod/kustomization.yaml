@@ -9,7 +9,7 @@ namespace: pixelclock-prod
 # Prod uses a pinned SHA or explicit version tag — never a mutable tag like :latest.
 # Update this tag as part of your promotion process.
 images:
-  - name: zot.lan:5000/pixelclock
+  - name: zot.lan:5000/pixelclock-go-app
     newTag: latest
 
 patches:

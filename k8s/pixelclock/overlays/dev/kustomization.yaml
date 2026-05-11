@@ -10,7 +10,7 @@ namespace: pixelclock-dev
 
 # Pin to the :dev image tag. You'll push this tag during development.
 images:
-  - name: zot.lan:5000/pixelclock
+  - name: zot.lan:5000/pixelclock-go-app
     newTag: latest
 
 # Overlay-specific patches — overrides just the fields that differ from base.
