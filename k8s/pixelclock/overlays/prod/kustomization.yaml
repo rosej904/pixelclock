@@ -10,7 +10,7 @@ namespace: pixelclock-prod
 # Update this tag as part of your promotion process.
 images:
   - name: zot.lan:5000/pixelclock
-    newTag: "1.0.0"
+    newTag: latest
 
 patches:
   - path: patch-config.yaml
